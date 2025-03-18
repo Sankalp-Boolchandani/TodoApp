@@ -14,6 +14,6 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.AUTO)             // generates a values automatically on creation, no need to do manually
     private Long id;
     private String name;
-    private Boolean completed;
+    private boolean completed;
 
 }

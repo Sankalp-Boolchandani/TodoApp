@@ -5,6 +5,7 @@ import com.app.todoapp.service.TaskService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -29,6 +30,18 @@ public class TaskController {
     @PostMapping("/createTask")
     private String createTask(@RequestParam String name){
         taskService.createTask(name);
+        return "redirect:/getTasks";             // renders the html thymeleaf template with the name of the string returned
+    }
+
+    @GetMapping("/deleteTask/{id}")
+    private String deleteTask(@PathVariable Long id){
+        taskService.deleteTask(id);
+        return "redirect:/getTasks";             // renders the html thymeleaf template with the name of the string returned
+    }
+
+    @GetMapping("/toggleTask/{id}")
+    private String toggleTask(@PathVariable Long id){
+        taskService.toggleTask(id);
         return "redirect:/getTasks";             // renders the html thymeleaf template with the name of the string returned
     }
 
