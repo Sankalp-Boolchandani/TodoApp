@@ -16,10 +16,11 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @GetMapping
+    @GetMapping("/getTasks")
     private String getTasks(Model model){
         List<Task> tasks=taskService.getAllTasks();
         model.addAttribute("tasks", tasks);             // helps sending the data to the associated html page
+        model.addAttribute("pageName", "All tasks");
         return "tasks";             // renders the html thymeleaf template with the name of the string returned
     }
 
