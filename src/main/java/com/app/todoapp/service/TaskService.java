@@ -17,6 +17,13 @@ public class TaskService {
     public List<Task> getAllTasks() {
         return taskRepository.findAll();            // findAll is a predefined method of JpaRepository which returns all the objects of the entity table
     }
+
+    public void createTask(String name) {
+        Task task=new Task();
+        task.setCompleted(false);
+        task.setName(name);
+        taskRepository.save(task);
+    }
 }
 
 // Service class contains all the business logics!

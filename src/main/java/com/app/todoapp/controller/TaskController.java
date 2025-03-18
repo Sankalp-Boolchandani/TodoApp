@@ -5,6 +5,8 @@ import com.app.todoapp.service.TaskService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -22,6 +24,12 @@ public class TaskController {
         model.addAttribute("tasks", tasks);             // helps sending the data to the associated html page
         model.addAttribute("pageName", "All tasks");
         return "tasks";             // renders the html thymeleaf template with the name of the string returned
+    }
+
+    @PostMapping("/createTask")
+    private String createTask(@RequestParam String name){
+        taskService.createTask(name);
+        return "redirect:/getTasks";             // renders the html thymeleaf template with the name of the string returned
     }
 
 }
